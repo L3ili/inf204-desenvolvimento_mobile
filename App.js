@@ -14,7 +14,11 @@ export default function App() {
       <Button
         title="Incrementar +1"
         onPress={() => setContagem(contagem + 1)}
-      /> 
+      />
+      <Button
+        title="Zerar"
+        onPress={() => setContagem(contagem * 0)}
+      />
     </View>
   );
 }
