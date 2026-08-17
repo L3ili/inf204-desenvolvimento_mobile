@@ -3,22 +3,30 @@ import { Text, View, Button, StyleSheet } from "react-native";
 
 export default function App() {
   const [contagem, setContagem] = useState(0);
-
   // contador = contador + 1;
-
+  const descrementar = () => {
+    if (contagem > 0) {
+      setContagem(contagem - 1);
+    }
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.texto}>"Ola, Turma de INF204!"</Text>
       <Text style={styles.titulo}>"Contagem atual:"</Text>
       <Text style={styles.numero}>{contagem}</Text>
       <Button
         title="Incrementar +1"
         onPress={() => setContagem(contagem + 1)}
       />
+      
       <Button
         title="Zerar"
         onPress={() => setContagem(0)}
-      />
+      /> //Botão para zerar
+
+      <Button
+        title="Decrementar -1"
+        onPress={descrementar}
+      />//Botão para descrementar 
     </View>
   );
 }
