@@ -17,7 +17,7 @@ export default function App() {
       />
       <Button
         title="Zerar"
-        onPress={() => setContagem(contagem * 0)}
+        onPress={() => setContagem(0)}
       />
     </View>
   );
