@@ -1,67 +1,31 @@
-import React, { useState } from "react";
-import { Text, View, Button,TouchableOpacity, StyleSheet } from "react-native";
-
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 export default function App() {
-  const [contagem, setContagem] = useState(0);
-  const decrementar = () => {
-    if (contagem > 0) {
-      setContagem(contagem - 1);
-    }
-  };
-  return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>"Contagem atual:"</Text>
-      <Text style={styles.numero}>{contagem}</Text>
-      
-      <TouchableOpacity onPress={() => setContagem(contagem + 1)} style={styles.botao}>
-        <Text style={styles.textoBotao}>Incrementar +1</Text>
-        </TouchableOpacity>
-        {/*Customização do botão incrementar +1*/}
-  
-      <TouchableOpacity onPress={() => setContagem(0)} style={styles.botao}>
-        <Text style={styles.textoBotao}>Zerar</Text>
-        </TouchableOpacity>
-        {/*Customização do botão zerar*/}
-
-      <TouchableOpacity onPress={decrementar} style={styles.botao}> 
-        <Text style={styles.textoBotao}>Decrementar -1</Text>
-        </TouchableOpacity>
-        {/*Customização do botão decrementar -1*/}
-
-    </View>
-  );
+// Criando um Array de Objetos em JavaScript puro
+const tarefas = [
+{ id: 1, descricao: "Estudar ES6+", concluida: true },
+{ id: 2, descricao: "Configurar ambiente Expo", concluida: true },
+{ id: 3, descricao: "Entender o funcionamento do JSX", concluida: false },
+{ id: 4, descricao: "Finalizar Roteiro de Pratica 02", concluida: false },
+];
+return (
+<View style={styles.container}>
+<Text style={styles.titulo}>Lista de Tarefas</Text>
+{/* A lista sera renderizada aqui no Passo 3 */}
+</View>
+);
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#e0f7fa"
-  },
-  texto: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#380474"
-  },
-  titulo: {
-    fontSize: 20,
-    color: "#111010"
-  },
-  numero: {
-    fontSize: 48,
-    fontWeight: "bold",
-    color: "#7a4caf",
-    marginBottom: 20
-  },
-  botao: {
-    backgroundColor: "#7a4caf",
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10
-  },
-  textoBotao: {
-    color: "#111010",
-    fontWeight: "bold"
-  }
+container: {
+flex: 1,
+backgroundColor: "#f5f5f5",
+paddingTop: 50,
+paddingHorizontal: 20,
+},
+titulo: {
+fontSize: 24,
+fontWeight: "bold",
+marginBottom: 20,
+color: "#20325a",
+},
 });
