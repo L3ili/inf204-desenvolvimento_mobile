@@ -11,7 +11,15 @@ const tarefas = [
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Lista de Tarefas</Text>
-{/* A lista sera renderizada aqui no Passo 3 */}
+{tarefas.map((tarefa) => (
+<View key={tarefa.id} style={styles.card}>
+<Text style={styles.textoTarefa}>
+{/* Renderizacao Condicional: Se concluida exibe [OK] */}
+{tarefa.concluida ? "[OK] " : "[PENDENTE] "}
+{tarefa.descricao}
+</Text>
+</View>
+))}
 </View>
 );
 }
@@ -26,6 +34,20 @@ titulo: {
 fontSize: 24,
 fontWeight: "bold",
 marginBottom: 20,
-color: "#20325a",
+color: "#380474",
+},
+card: {
+backgroundColor: "#7a4caf",
+padding: 15,
+borderRadius: 8,
+marginBottom: 10,
+shadowColor: "#000",
+shadowOpacity: 0.1,
+shadowRadius: 4,
+elevation: 2,
+},
+textoTarefa: {
+fontSize: 16,
+color: "#111010",
 },
 });
