@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
 export default function App() {
 const [nome, setNome] = useState("Joao Vitor");
+const [seguindo, setSeguindo] = useState(true);
+
 return (
 <View style={styles.container}>
 <View style={styles.cartao}>
@@ -9,8 +11,10 @@ return (
 <Text style={styles.nomeUsuario}>{nome}</Text>
 <Text style={styles.profissao}>Engenheiro de Software</Text>
 {/* Botao Customizado */}
-<TouchableOpacity style={styles.botao} activeOpacity={0.7} onPress={() =>
-alert("Seguindo " + nome)}>
+<TouchableOpacity style={[styles.botao, seguindo ? styles.botaoDesativado : null]} activeOpacity={0.7} onPress={() => {
+alert("Seguindo " + nome);
+setSeguindo(!seguindo)
+}}>            
 <Text style={styles.textoBotao}>Seguir</Text>
 </TouchableOpacity>
 {/* Entrada de Texto */}
@@ -20,6 +24,7 @@ placeholder="Alterar nome..."
 value={nome}
 onChangeText={(texto) => setNome(texto)}
 />
+
 </View>
 </View>
 );
@@ -77,5 +82,8 @@ borderColor: "#CCC",
 borderRadius: 8,
 padding: 10,
 textAlign: "center",
-}
+},
+botaoDesativado: {
+backgroundColor: "#999999", // ProGray
+},
 });
