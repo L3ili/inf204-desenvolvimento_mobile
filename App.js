@@ -1,16 +1,25 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
 export default function App() {
+const [nome, setNome] = useState("Joao Vitor");
 return (
 <View style={styles.container}>
 <View style={styles.cartao}>
-{/* Imagem Remota: Obrigatorio definir width e height no estilo */}
-<Image
-source={{ uri: "..." }}
-style={styles.avatar}
-/>
-<Text style={styles.nomeUsuario}>Joao Vitor</Text>
+<Image source={{ uri: "..." }} style={styles.avatar} />
+<Text style={styles.nomeUsuario}>{nome}</Text>
 <Text style={styles.profissao}>Engenheiro de Software</Text>
+{/* Botao Customizado */}
+<TouchableOpacity style={styles.botao} activeOpacity={0.7} onPress={() =>
+alert("Seguindo " + nome)}>
+<Text style={styles.textoBotao}>Seguir</Text>
+</TouchableOpacity>
+{/* Entrada de Texto */}
+<TextInput
+style={styles.input}
+placeholder="Alterar nome..."
+value={nome}
+onChangeText={(texto) => setNome(texto)}
+/>
 </View>
 </View>
 );
@@ -48,5 +57,25 @@ profissao: {
 fontSize: 16,
 color: "#505050", // ProGray
 marginBottom: 20,
+},
+botao: {
+backgroundColor: "#7a4caf", // ProAccent
+paddingVertical: 10,
+paddingHorizontal: 30,
+borderRadius: 8,
+marginBottom: 20,
+},
+textoBotao: {
+color: "#111010",
+fontWeight: "bold",
+fontSize: 16,
+},
+input: {
+width: "100%",
+borderWidth: 1,
+borderColor: "#CCC",
+borderRadius: 8,
+padding: 10,
+textAlign: "center",
 }
 });
