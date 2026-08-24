@@ -8,6 +8,8 @@ const tarefas = [
 { id: 3, descricao: "Entender o funcionamento do JSX", concluida: false },
 { id: 4, descricao: "Finalizar Roteiro de Pratica 02", concluida: false },
 ];
+const pendente = tarefas.filter((tarefa) => !tarefa.concluida );
+// Renderizacao Condicional: Se concluida exibe "OK" senao exibe "PENDENTE" 
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Lista de Tarefas</Text>
@@ -16,6 +18,16 @@ return (
 <Text style={styles.textoTarefa}>
 {/* Renderizacao Condicional: Se concluida exibe [OK] */}
 {tarefa.concluida ? "[OK] " : "[PENDENTE] "}
+{tarefa.descricao}
+</Text>
+</View>
+))}
+
+<Text style={styles.titulo}>Lista de Tarefas Pendentes</Text>
+{pendente.map((tarefa) => (
+<View key={tarefa.id} style={styles.card}>
+<Text style={styles.textoTarefa}>
+{tarefa.concluida ? "OK " : "PENDENTE"}
 {tarefa.descricao}
 </Text>
 </View>
