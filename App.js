@@ -2,14 +2,21 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 export default function App() {
 // Criando um Array de Objetos em JavaScript puro
-const tarefas = [
+const [ tarefas , setTarefas] = useState( [
 { id: 1, descricao: "Estudar ES6+", concluida: true },
 { id: 2, descricao: "Configurar ambiente Expo", concluida: true },
 { id: 3, descricao: "Entender o funcionamento do JSX", concluida: false },
 { id: 4, descricao: "Finalizar Roteiro de Pratica 02", concluida: false },
-];
-const pendente = tarefas.filter((tarefa) => !tarefa.concluida );
-// Renderizacao Condicional: Se concluida exibe "OK" senao exibe "PENDENTE" 
+]);
+const adicionarTarefa = () => {
+ const novaTarefa = {
+ id: tarefas.length + 1,
+ descricao: "Nova tarefa",
+ concluida: false,
+ };
+ setTarefas([...tarefas, novaTarefa]);
+};
+
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Lista de Tarefas</Text>
@@ -22,16 +29,10 @@ return (
 </Text>
 </View>
 ))}
-
-<Text style={styles.titulo}>Lista de Tarefas Pendentes</Text>
-{pendente.map((tarefa) => (
-<View key={tarefa.id} style={styles.card}>
-<Text style={styles.textoTarefa}>
-{tarefa.concluida ? "OK " : "PENDENTE"}
-{tarefa.descricao}
-</Text>
-</View>
-))}
+{/*Botão para adicionar tarefa*/}
+<TouchableOpacity onPress={ adicionarTarefa } style = {styles.botao}>
+ <Text style={styles.textoBotao}> Nova tarefa </Text>
+</TouchableOpacity>
 </View>
 );
 }
@@ -63,3 +64,13 @@ fontSize: 16,
 color: "#111010",
 },
 });
+ botao: {
+ backgroundColor: "#7a4caf",
+ padding: 10,
+ borderRadius: 5,
+ marginBottom: 10
+ },
+ textoBotao: {
+ color: "#111010",
+ fontWeight: "bold"
+ }
