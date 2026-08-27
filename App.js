@@ -8,15 +8,6 @@ const [ tarefas , setTarefas] = useState( [
 { id: 3, descricao: "Entender o funcionamento do JSX", concluida: false },
 { id: 4, descricao: "Finalizar Roteiro de Pratica 02", concluida: false },
 ]);
-const adicionarTarefa = () => {
- const novaTarefa = {
- id: tarefas.length + 1,
- descricao: "Nova tarefa",
- concluida: false,
- };
- setTarefas([...tarefas, novaTarefa]);
-};
-
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Lista de Tarefas</Text>
@@ -29,10 +20,6 @@ return (
 </Text>
 </View>
 ))}
-{/*Botão para adicionar tarefa*/}
-<TouchableOpacity onPress={ adicionarTarefa } style = {styles.botao}>
- <Text style={styles.textoBotao}> Nova tarefa </Text>
-</TouchableOpacity>
 </View>
 );
 }
@@ -64,13 +51,3 @@ fontSize: 16,
 color: "#111010",
 },
 });
- botao: {
- backgroundColor: "#7a4caf",
- padding: 10,
- borderRadius: 5,
- marginBottom: 10
- },
- textoBotao: {
- color: "#111010",
- fontWeight: "bold"
- }
