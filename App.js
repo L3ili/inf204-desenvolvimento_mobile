@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import JogoDaVelha from "./JogoDaVelha";
 export default function App() {
 const pessoas = [
   { id: 1, nome: "João Vitor", profissao: "Engenheiro de Software" },
@@ -33,6 +34,7 @@ placeholder="Alterar nome..."
 value={nome}
 onChangeText={(texto) => setNome(texto)}
 />
+  <JogoDaVelha />
   </ScrollView>
 );
 }
