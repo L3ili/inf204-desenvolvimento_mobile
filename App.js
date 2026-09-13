@@ -14,12 +14,17 @@ setVotosA(0);
 setVotosB(0);
 setVotosC(0);
 };
+
+const PorcentagemA = votosA > 0 ? (votosA / totalVotos) * 100 : 0;
+const PorcentagemB = votosB > 0 ? (votosB / totalVotos) * 100 : 0;
+const PorcentagemC = votosC > 0 ? (votosC / totalVotos) * 100 : 0;
+
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Painel de Votação</Text>
 {/* Candidato A */}
 <View style={styles.candidatoContainer}>
-<Text style={styles.nomeCandidato}>Candidato A: {votosA} votos</Text>
+<Text style={styles.nomeCandidato}>Candidato A: {votosA} votos ({PorcentagemA.toFixed(2)}%)</Text>
 <TouchableOpacity
 style={styles.botaoVotar}
 onPress={() => setVotosA(prev => prev + 1)}
@@ -29,7 +34,7 @@ onPress={() => setVotosA(prev => prev + 1)}
 </View>
 {/* Candidato B */}
 <View style={styles.candidatoContainer}>
-<Text style={styles.nomeCandidato}>Candidato B: {votosB} votos</Text>
+<Text style={styles.nomeCandidato}>Candidato B: {votosB} votos ({PorcentagemB.toFixed(2)}%)</Text>
 <TouchableOpacity
 style={styles.botaoVotar}
 onPress={() => setVotosB(prev => prev + 1)}
@@ -39,7 +44,7 @@ onPress={() => setVotosB(prev => prev + 1)}
 </View>
 {/* Candidato C */}
 <View style={styles.candidatoContainer}>
-<Text style={styles.nomeCandidato}>Candidato C: {votosC} votos</Text>
+<Text style={styles.nomeCandidato}>Candidato C: {votosC} votos ({PorcentagemC.toFixed(2)}%)</Text>
 <TouchableOpacity
 style={styles.botaoVotar}
 onPress={() => setVotosC(prev => prev + 1)}
@@ -48,7 +53,7 @@ onPress={() => setVotosC(prev => prev + 1)}
 </TouchableOpacity>
 </View>
 <View style={styles.rodape}>
-<Text style={styles.totalTexto}>Total de Votos: {totalVotos}</Text>
+<Text style={styles.totalTexto}>Total de Votos: {totalVotos} </Text>
 <TouchableOpacity style={styles.botaoZerar} onPress={zerarUrna}>
 <Text style={styles.textoBotao}>Zerar Urna</Text>
 </TouchableOpacity>
