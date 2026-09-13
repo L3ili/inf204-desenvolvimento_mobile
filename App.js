@@ -5,10 +5,18 @@ export default function UrnaEletronica() {
 const [votosA, setVotosA] = useState(0);
 const [votosB, setVotosB] = useState(0);
 const [votosC, setVotosC] = useState(0);
+
+// Derivacao de Dados (nao precisa de um state separado)
+const totalVotos = votosA + votosB + votosC;
+// Funcao para zerar todos os estados simultaneamente
+const zerarUrna = () => {
+setVotosA(0);
+setVotosB(0);
+setVotosC(0);
+};
 return (
 <View style={styles.container}>
 <Text style={styles.titulo}>Painel de Votação</Text>
-{/* Os botoes serao adicionados no Passo 2 */}
 {/* Candidato A */}
 <View style={styles.candidatoContainer}>
 <Text style={styles.nomeCandidato}>Candidato A: {votosA} votos</Text>
@@ -39,8 +47,13 @@ onPress={() => setVotosC(prev => prev + 1)}
 <Text style={styles.textoBotao}>Votar em C</Text>
 </TouchableOpacity>
 </View>
+<View style={styles.rodape}>
+<Text style={styles.totalTexto}>Total de Votos: {totalVotos}</Text>
+<TouchableOpacity style={styles.botaoZerar} onPress={zerarUrna}>
+<Text style={styles.textoBotao}>Zerar Urna</Text>
+</TouchableOpacity>
 </View>
-
+</View>
 );
 }
 const styles = StyleSheet.create({
@@ -57,16 +70,21 @@ fontWeight: "bold",
 marginBottom: 30,
 color: "#14325A", // ProBlue
 },
-botaoVotar: {
-backgroundColor: "#7a4caf", // ProAccent
-paddingVertical: 10,
-paddingHorizontal: 30,
+candidatoContainer: {
+width: "100%",
+backgroundColor: "#FFF",
+padding: 15,
 borderRadius: 8,
-marginBottom: 20,
+marginBottom: 10,
+alignItems: "center",
+elevation: 2,
 },
-textoBotao: {
-color: "#111010",
-fontWeight: "bold",
-fontSize: 16,
-},
+nomeCandidato: { fontSize: 18, marginBottom: 10 },
+botaoVotar: { backgroundColor: "#7a4caf", padding: 10, borderRadius: 5, width:
+"80%", alignItems: "center" },
+textoBotao: { color: "#000000", fontWeight: "bold" },
+rodape: { marginTop: 30, alignItems: "center", width: "100%", borderTopWidth:
+1, borderColor: "#CCC", paddingTop: 20 },
+totalTexto: { fontSize: 20, fontWeight: "bold", marginBottom: 15 },
+botaoZerar: { backgroundColor: "#808080", padding: 15, borderRadius: 5 }
 });
