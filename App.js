@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 export default function UrnaEletronica() {
 // Criando estados independentes para cada candidato
 const [votosA, setVotosA] = useState(0);
@@ -19,9 +19,18 @@ const PorcentagemA = votosA > 0 ? (votosA / totalVotos) * 100 : 0;
 const PorcentagemB = votosB > 0 ? (votosB / totalVotos) * 100 : 0;
 const PorcentagemC = votosC > 0 ? (votosC / totalVotos) * 100 : 0;
 
+const [mesario, setMesario] = useState("");
+
 return (
 <View style={styles.container}>
+<TextInput
+style={styles.input}
+placeholder="Digite o nome  do mesário: "
+value={mesario}
+onChangeText={(texto) => setMesario(texto)}
+/>
 <Text style={styles.titulo}>Painel de Votação</Text>
+<Text style={styles.textomesario}> Mesário atual: {mesario} </Text>
 {/* Candidato A */}
 <View style={styles.candidatoContainer}>
 <Text style={styles.nomeCandidato}>Candidato A: {votosA} votos ({PorcentagemA.toFixed(2)}%)</Text>
@@ -77,7 +86,7 @@ color: "#14325A", // ProBlue
 },
 candidatoContainer: {
 width: "100%",
-backgroundColor: "#FFF",
+backgroundColor: "#c4aec9",
 padding: 15,
 borderRadius: 8,
 marginBottom: 10,
@@ -91,5 +100,18 @@ textoBotao: { color: "#000000", fontWeight: "bold" },
 rodape: { marginTop: 30, alignItems: "center", width: "100%", borderTopWidth:
 1, borderColor: "#CCC", paddingTop: 20 },
 totalTexto: { fontSize: 20, fontWeight: "bold", marginBottom: 15 },
-botaoZerar: { backgroundColor: "#808080", padding: 15, borderRadius: 5 }
+botaoZerar: { backgroundColor: "#584a59", padding: 15, borderRadius: 5 },
+input: {
+width: "80%",
+padding: 10,
+fontSize: 15,
+textAlign: "left",
+},
+textomesario: {
+  color: "#000000",
+  fontWeight: "bold",
+  fontSize: 18,
+  textAlign: "left",
+  width: "100%",
+},
 });
