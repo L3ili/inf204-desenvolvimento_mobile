@@ -57,7 +57,7 @@ fontWeight: "bold",
 marginBottom: 30,
 color: "#14325A", // ProBlue
 },
-botao: {
+botaoVotar: {
 backgroundColor: "#7a4caf", // ProAccent
 paddingVertical: 10,
 paddingHorizontal: 30,
