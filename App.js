@@ -51,6 +51,17 @@ const onRefresh = () => {
   }, 2000);
 };
 
+const carregarMaisContatos = () => {
+  setContatos(anterior =>{
+    const base = anterior.length;
+    const novos = [1,2,3].map(n => ({
+      id: String(Date.now() + n),
+      nome: `Novo Contato ${base + n}`,
+      telefone: `(31) 90000-000${n}`,
+    }));
+    return [...anterior, ...novos];
+  })
+
 return (
 <View style={styles.container}>
 <View style={styles.cabecalho}>
@@ -74,6 +85,8 @@ ListEmptyComponent={renderizarVazio}
 refreshing={carregando}
 onRefresh={onRefresh}
 
+onEndReached={carregarMaisContatos}
+onEndReachedThreshold={0.2}
 />
 </View>
 );
@@ -94,4 +107,4 @@ containerVazio: { alignItems: "center", marginTop: 50 },
 textoVazio: { fontSize: 18, color: "#808080", fontStyle: "italic" }
 });
 
-
+}
