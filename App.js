@@ -45,6 +45,10 @@ export default function App() {
             <Text style={styles.email}>{item.email}</Text>
           </View>
         )}
+
+       refreshing={loading} 
+       onRefresh={buscarDados} 
+
       />
     </View>
   );
