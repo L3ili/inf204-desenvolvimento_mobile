@@ -25,7 +25,8 @@ export default function App() {
 
 function EcraPrincipal() {
   const db = useSQLiteContext();
-  const [nomeUsuario, setNomeUsuario] = useState("Visitante");
+
+  const [usuario, setUsuario] = useState({ nome: "Visitante", logado: false });
   const [tarefas, setTarefas] = useState([]);
   const [novaTarefa, setNovaTarefa] = useState("");
 
@@ -35,14 +36,17 @@ function EcraPrincipal() {
   }, []);
 
   const carregarPreferencias = async () => {
-    const nomeSalvo = await AsyncStorage.getItem("@AppTarefas:Nome");
-    if (nomeSalvo) setNomeUsuario(nomeSalvo);
+    const dadosSalvos = await AsyncStorage.getItem("@AppTarefas:Usuario");
+    if (dadosSalvos) {
+      const usuarioSalvo = JSON.parse(dadosSalvos);
+      setUsuario(usuarioSalvo);
+    }
   };
 
   const salvarNome = async () => {
-    const novoNome = "Estudante INF204";
-    await AsyncStorage.setItem("@AppTarefas:Nome", novoNome);
-    setNomeUsuario(novoNome);
+    const novoUsuario = { nome: "Estudante INF204", logado: true };
+    await AsyncStorage.setItem("@AppTarefas:Usuario", JSON.stringify(novoUsuario));
+    setUsuario(novoUsuario);
   };
 
   const carregarTarefas = async () => {
@@ -79,7 +83,9 @@ function EcraPrincipal() {
   return (
     <View style={styles.container}>
       <View style={styles.cabecalho}>
-        <Text style={styles.titulo}>Olá, {nomeUsuario}!</Text>
+        <Text style={styles.titulo}>
+          Olá, {usuario.nome}! {usuario.logado ? "✅" : ""}
+        </Text>
         <TouchableOpacity style={styles.botaoAcao} onPress={salvarNome}>
           <Text style={styles.textoBotao}>Mudar Nome</Text>
         </TouchableOpacity>
